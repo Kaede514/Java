@@ -83,39 +83,15 @@ public class ReflectionTest {
         System.out.println("declaredMethod = " + declaredMethod);
     }
 
+    @Test
+    public void test3() {
+        Class<Person> clazz = Person.class;
+        int modifiers = clazz.getModifiers();
+        System.out.println(Modifier.toString(modifiers));
+        System.out.println(Modifier.toString(interfaceA.class.getModifiers()));
+        System.out.println(Modifier.toString(annotationB.class.getModifiers()));
+        System.out.println(Modifier.toString(enumC.class.getModifiers()));
+    }
+
 }
 
-class Person implements Serializable {
-    public Integer id;
-    private String name;
-    private int age;
-    public static String info = "Person";
-
-    public Person() {
-    }
-
-    private Person(String name) {
-        this.name = name;
-    }
-
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    private void show(String str) {
-        System.out.println("show... " + str);
-    }
-
-    public static void list(String str) {
-        System.out.println("list... " + str);
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-            "name='" + name + '\'' +
-            ", age=" + age +
-            '}';
-    }
-}
