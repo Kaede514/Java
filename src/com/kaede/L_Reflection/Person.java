@@ -1,24 +1,28 @@
 package com.kaede.L_Reflection;
 
-import com.kaede.L_Annotation.MyAnnotation;
-
 import java.io.Serializable;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.*;
 
 /**
  * @author kaede
  * @create 2022-10-14
  */
 
-@SuppressWarnings("all")
-public class Person implements Serializable {
-    public Integer id;
-    private String name;
+@MyAnnotation("hi")
+public class Person extends Creature<String> implements Cloneable,MyInterface {
+    @MyAnnotation("field")
+    public String name;
     private int age;
     public static String info = "Person";
 
     public Person() {
     }
 
+    @MyAnnotation("cons")
     private Person(String name) {
         this.name = name;
     }
@@ -28,12 +32,19 @@ public class Person implements Serializable {
         this.age = age;
     }
 
-    private void show(String str) {
+    @MyAnnotation
+    private String show(String str) throws RuntimeException {
         System.out.println("show... " + str);
+        return str;
     }
 
     public static void list(String str) {
         System.out.println("list... " + str);
+    }
+
+    @Override
+    public void info() {
+        System.out.println("info...");
     }
 
     @Override
